@@ -8,9 +8,8 @@ namespace TextAdventure
 
         static void Main(string[] args)
         {
-            Engine engine = new Engine();
-            engine.Init();
-
+            Commands commands = new Commands();
+            commands.Loop();
         }
     }
 }

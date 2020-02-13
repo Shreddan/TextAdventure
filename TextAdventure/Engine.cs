@@ -20,7 +20,7 @@ namespace TextAdventure
 
         public void Update()
         {
-
+            inputHandler();
         }
 
         public void GetItems(List<Items.Weapons> weps, List<Items.Armour> armours)
@@ -46,22 +46,45 @@ namespace TextAdventure
                     weps.Add(weapons);
                 }
 
-                foreach (Items.Weapons wepo in weps)
-                {
-                    Console.WriteLine("Name : " + wepo.Name);
-                    Console.WriteLine();
-                    Console.WriteLine("Level : " + wepo.Level);
-                    Console.WriteLine("Weight : " + wepo.Weight);
-                    Console.WriteLine("Value : " + wepo.Value);
-                    Console.WriteLine("Base Damage : " + wepo.baseDamage);
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
+                
             }
             else
             {
                 Console.WriteLine("File not Found");
                 Console.WriteLine(weapon.path);
+            }
+        }
+
+        public void DisplayItems(List<Items.Weapons> weps)
+        {
+            foreach (Items.Weapons wepo in weps)
+            {
+                Console.WriteLine("Name : " + wepo.Name);
+                Console.WriteLine();
+                Console.WriteLine("Level : " + wepo.Level);
+                Console.WriteLine("Weight : " + wepo.Weight);
+                Console.WriteLine("Value : " + wepo.Value);
+                Console.WriteLine("Base Damage : " + wepo.baseDamage);
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+
+        public void inputHandler()
+        {
+            switch (Console.ReadKey(true).Key)
+            {
+                case ConsoleKey.Escape:
+                    {
+                        Commands.running = false;
+                        break;
+                    }
+                case ConsoleKey.Enter:
+                    {
+                        string cmd = Console.ReadLine();
+                        Commands.ParseCommand(cmd);
+                        break;
+                    }
             }
         }
 
